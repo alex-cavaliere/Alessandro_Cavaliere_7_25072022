@@ -75,3 +75,11 @@ h1{
 #time span img{
     margin-bottom: 0.25em;
 }
+#recipes-cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card-body{
+    overflow: hidden;
+    max-height: 200px;
+}
