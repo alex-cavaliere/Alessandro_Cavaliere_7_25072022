@@ -58,28 +58,30 @@ class Recipes {
                                 ${this._time}
                             </p>
                         </div>
-                        <div id="text" class="row">
+                        <div class="row" role="text">
                             <table>
                                 <tr>
                                     <th>ingredient</th>
                                     <td>400ml</td>
                                 </tr>
-                                <tr>
-                                    <th>ingredient:</th>
-                                    <td>400ml</td>
-                                </tr>
-                                <tr>
-                                    <th>ingredient:</th>
-                                    <td>400ml</td>
-                                </tr>
                             </table>
                             <p class="col-1"></p>
-                            <p class="col-7 card-text">${this._description}</p>
+                            <p class="col-7 card-text text-truncate">${this._description}</p>
                         </div>
                     </div>
                 </div>
             </div>
         `;
+        // iteration des ingredients des recettes
+        this._ingredients.forEach(ingredient => {
+           let frase = ingredient.ingredient.concat(": " + ingredient.quantity);
+           if(ingredient.hasOwnProperty('unit')){
+            let prova = frase.concat(" " + ingredient.unit);
+            console.log(prova);
+            }else{
+                console.log(frase);
+            }
+        })
         wrapper.innerHTML = cardTemplate;
         return wrapper;
     }
