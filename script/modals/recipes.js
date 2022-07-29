@@ -55,31 +55,29 @@ class Recipes {
                                 <span>
                                     <img src="./logo/time_vector.png" alt="time vector">
                                 </span>
-                                ${this._time}
+                                ${this._time} min
                             </p>
                         </div>
                         <div class="row" role="text">
-                            <table>
-                                <tr>
-                                    <th>ingredient</th>
-                                    <td>400ml</td>
-                                </tr>
-                            </table>
-                            <p class="col-1"></p>
-                            <p class="col-7 card-text text-truncate">${this._description}</p>
+                            <div class="table">
+
+                            </div>
+                            <p class="col-7 card-text">${this._description}</p>
                         </div>
                     </div>
                 </div>
             </div>
         `;
+
         // iteration des ingredients des recettes
         this._ingredients.forEach(ingredient => {
-           let frase = ingredient.ingredient.concat(": " + ingredient.quantity);
-           if(ingredient.hasOwnProperty('unit')){
-            let prova = frase.concat(" " + ingredient.unit);
-            console.log(prova);
-            }else{
-                console.log(frase);
+            const tables = Array.from(document.querySelectorAll('.table'));
+            console.log(this._id);
+            const p = document.createElement('p');
+            p.classList.add('col')
+            for(let table of tables){
+                p.innerHTML = ingredient.ingredient + ": " + ingredient.quantity + " " + ingredient.unit;
+                table.appendChild(p);
             }
         })
         wrapper.innerHTML = cardTemplate;

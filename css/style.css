@@ -76,5 +76,8 @@ h1{
     margin-bottom: 0.25em;
 }
 .card-body{
-    max-height: 191px;
+    min-width: 350px;
+}
+.table{
+    max-width: 40%;
 }
