@@ -30,9 +30,10 @@ section{
 }
 section h2, section #time{
     font-size: 18px;
+    font-family: 'DM Sans-s', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 #main{
-    font-family: 'DM Sans-s', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'DM Sans', 'Arial' 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #logo{
     margin-top: 1em;

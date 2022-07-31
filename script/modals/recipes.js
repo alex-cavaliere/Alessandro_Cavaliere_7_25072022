@@ -1,4 +1,8 @@
 const row = document.querySelector('section > .row');
+const ingredientsDropdown = document.getElementById('ingredients-dropdown');
+const applianceDropdown = document.getElementById('appliance-dropdown');
+const ustensilsDropdown = document.getElementById('ustensils-dropdown');
+
 class Recipes {
     constructor(data){
         this._id = data.id
@@ -60,26 +64,48 @@ class Recipes {
                         </div>
                         <div class="row" role="text">
                             <div class="table">
-
                             </div>
                             <p class="col-7 card-text">${this._description}</p>
                         </div>
                     </div>
                 </div>
             </div>
-        `;
 
+        `;
+        const tables = Array.from(document.getElementsByClassName('table'));
         // iteration des ingredients des recettes
-        this._ingredients.forEach(ingredient => {
-            const tables = Array.from(document.querySelectorAll('.table'));
-            console.log(this._id);
+        this._ingredients.forEach(obj => {
             const p = document.createElement('p');
-            p.classList.add('col')
-            for(let table of tables){
-                p.innerHTML = ingredient.ingredient + ": " + ingredient.quantity + " " + ingredient.unit;
-                table.appendChild(p);
-            }
+            const a = document.createElement('a');
+            a.classList.add('dropdown-item');
+            a.setAttribute('href', '#');
+            a.textContent = obj.ingredient;
+            ingredientsDropdown.appendChild(a);
+            p.classList.add('col');
+            tables.forEach(table => {
+                if (obj.hasOwnProperty('ingredient')){
+                    p.textContent = obj.ingredient;
+                    p.style.fontFamily = 'DM Sans-s';
+                }if (obj.hasOwnProperty('quantity')){
+                    p.textContent = obj.ingredient + ": " + obj.quantity;    
+                }if(obj.hasOwnProperty('unit')){
+                    p.textContent = obj.ingredient + ": " + obj.quantity + " " + obj.unit;
+                }
+                table.appendChild(p);  
+            })
         })
+            const app = document.createElement('a');
+            app.classList.add('dropdown-item');
+            app.setAttribute('href', '#');
+            app.textContent = this._appliance;
+            applianceDropdown.appendChild(app);
+
+            const ust = document.createElement('a');
+            ust.classList.add('dropdown-item');
+            ust.setAttribute('href', '#');
+            ust.textContent = this._ustensils;
+            ustensilsDropdown.appendChild(ust);
+
         wrapper.innerHTML = cardTemplate;
         return wrapper;
     }
