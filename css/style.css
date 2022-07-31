@@ -26,7 +26,7 @@
          url('../fonts/dm-sans-v11-latin-700.svg#DMSans') format('svg'); /* Legacy iOS */
 }
 section{
-    font-size: 12px;
+    font-size: 14px;
 }
 section h2, section #time{
     font-size: 18px;
@@ -61,6 +61,10 @@ h1{
     font-size: 1.5em;
     color: black;
 }
+.dropdown button{
+    width: 10em;
+    height: 3.5em;
+}
 #first_dropdown div, #first_dropdown button{
     background-color: #3282F7;
 }
@@ -79,6 +83,17 @@ h1{
 .card-body{
     min-width: 350px;
 }
+.card-text:nth-child(2){
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 130px;
+}
 .table{
     max-width: 40%;
 }
+.item{
+    margin: 0;
+}
+

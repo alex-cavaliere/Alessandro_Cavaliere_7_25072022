@@ -15,25 +15,28 @@ async function getData(){
         const recipes = data.recipes;
         recipes.forEach(recipe => {
             const Template = new Recipes(recipe)
-
             const tables = Array.from(document.getElementsByClassName('table'));
             // iteration des ingredients des recettes
             Template._ingredients.forEach(obj => {
                 const p = document.createElement('p');
+                // dropdown menu
                 const a = document.createElement('a');
                 a.classList.add('dropdown-item');
                 a.setAttribute('href', '#');
-                a.textContent = obj.ingredient;
+                let ingredient = obj.ingredient;
+                let quantity = obj.quantity;
+                let unit = obj.unit;
+                a.textContent = ingredient;
                 ingredientsDropdown.append(a);
-                p.classList.add('col');
+                p.classList.add('col', 'item');
+                // iteration des tableaux des recettes
                 tables.forEach(table => {
-                    if (obj.hasOwnProperty('ingredient')){
-                        p.textContent = obj.ingredient;
-                        p.style.fontFamily = 'DM Sans-s';
-                    }if (obj.hasOwnProperty('quantity')){
-                        p.textContent = obj.ingredient + ": " + obj.quantity;    
-                    }if(obj.hasOwnProperty('unit')){
-                        p.textContent = obj.ingredient + ": " + obj.quantity + " " + obj.unit;
+                    if (Object.hasOwnProperty.call(obj, 'ingredient')){
+                        p.textContent = ingredient;
+                    }if (Object.hasOwnProperty.call(obj,'quantity')){
+                        p.textContent = ingredient + ": " + quantity;    
+                    }if(Object.hasOwnProperty.call(obj,'unit')){
+                        p.textContent = ingredient + ": " + quantity + " " + unit;
                     }
                     table.append(p);  
                 })

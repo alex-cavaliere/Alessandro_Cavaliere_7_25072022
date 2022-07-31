@@ -1,4 +1,3 @@
-const row = document.querySelector('section > .row');
 class Recipes {
     constructor(data){
         this._id = data.id
@@ -49,7 +48,7 @@ class Recipes {
                 <div class="card mt-4">
                     <img src="./logo/img.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <div class="card-text row p-0">
+                        <div class="card-text row">
                             <h2 class="col-8">${this._name}</h2>
                             <p id="time" class="col">
                                 <span>
