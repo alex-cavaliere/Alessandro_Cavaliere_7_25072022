@@ -39,36 +39,4 @@ class Recipes {
     get ustensils(){
         return this._ustensils
     }
-    createCardDOM(){
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('card-wrapper', 'col');
-        const cardTemplate = 
-        `
-            <div id="card">
-                <div class="card mt-4">
-                    <img src="./logo/img.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="card-text row">
-                            <h2 class="col-8">${this._name}</h2>
-                            <p id="time" class="col">
-                                <span>
-                                    <img src="./logo/time_vector.png" alt="time vector">
-                                </span>
-                                ${this._time} min
-                            </p>
-                        </div>
-                        <div class="row" role="text">
-                            <div class="table">
-                            </div>
-                            <p class="col-7 card-text">${this._description}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        `;
-
-        wrapper.innerHTML = cardTemplate;
-        return wrapper;
-    }
 }

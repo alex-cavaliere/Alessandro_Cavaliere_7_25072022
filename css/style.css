@@ -25,8 +25,12 @@
          url('../fonts/dm-sans-v11-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
          url('../fonts/dm-sans-v11-latin-700.svg#DMSans') format('svg'); /* Legacy iOS */
 }
+a{
+    display: block;
+    max-width: max-content;
+}
 section{
-    font-size: 14px;
+    font-size: 12px;
 }
 section h2, section #time{
     font-size: 18px;
@@ -65,13 +69,20 @@ h1{
     width: 10em;
     height: 3.5em;
 }
-#first_dropdown div, #first_dropdown button{
+#first_dropdown div, #first_dropdown button, #form1{
     background-color: #3282F7;
 }
-#second_dropdown div, #second_dropdown button{
+.form-outline .form-control{
+    border: none;
+}
+.form-outline .form-control::placeholder{
+    color: white;
+    opacity: 0.5;
+}
+#second_dropdown div, #second_dropdown button, #form2{
     background-color: #68D9A4;
 }
-#third_dropdown div, #third_dropdown button{
+#third_dropdown div, #third_dropdown button, #form3{
     background-color: #ED6454;
 }
 .dropdown-menu a{
@@ -79,6 +90,7 @@ h1{
 }
 #time span img{
     margin-bottom: 0.25em;
+    margin-right: 0.50em;
 }
 .card-body{
     min-width: 350px;
@@ -93,7 +105,10 @@ h1{
 .table{
     max-width: 40%;
 }
-.item{
+.table .item{
     margin: 0;
+}
+.table .item span{
+    font-weight: bold;
 }
 
