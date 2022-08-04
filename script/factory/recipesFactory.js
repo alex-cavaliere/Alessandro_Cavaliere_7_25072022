@@ -1,3 +1,9 @@
+let dicIngredients = {};
+let dicUstensils = {};
+let totIngredients = [];
+let totUstensils = [];
+
+
 function recipesFactory(data){
     const recipe = new Recipes(data);
 
@@ -40,13 +46,14 @@ function recipesFactory(data){
             let ingredient = obj.ingredient;
             let quantity = obj.quantity;
             let unit = obj.unit;
-            // dropdown menu
+            dicIngredients.cle = ingredient;
+            p.classList.add('col', 'item');
+
             const a = document.createElement('a');
             a.classList.add('dropdown-item');
             a.setAttribute('href', '#');
-            a.textContent = ingredient;
-            ingredientsDropdown.append(a);
-            p.classList.add('col', 'item');
+            //console.log(dicIngredients)
+            
             // iteration des tableaux des recettes
             if (Object.hasOwnProperty.call(obj, 'ingredient')){
                 p.innerHTML = `<span>${ingredient}</span>`;
@@ -55,20 +62,35 @@ function recipesFactory(data){
             }if(Object.hasOwnProperty.call(obj,'unit')){
                 p.innerHTML = `<span>${ingredient}: </span>${quantity} ${unit}`;
             }
-            table.append(p);  
-            
+            table.append(p);             
+              
+            totIngredients.push(dicIngredients.cle);
+            console.log(totIngredients);
+            for(let x of totIngredients){
+                //console.log(totIngredients.indexOf(x), x)
+            }
         });
+        //console.log(dicIngredients);
+    
+        
+        // dropdown menu
+        
         const app = document.createElement('a');
         app.classList.add('dropdown-item');
         app.setAttribute('href', '#');
         app.textContent = recipe._appliance;
         applianceDropdown.appendChild(app);
 
-        const ust = document.createElement('a');
-        ust.classList.add('dropdown-item');
-        ust.setAttribute('href', '#');
-        ust.textContent = recipe._ustensils;
-        ustensilsDropdown.appendChild(ust);
+        recipe._ustensils.forEach(obj => {
+            dicUstensils.cle = obj;
+            const ust = document.createElement('a');
+            ust.classList.add('dropdown-item');
+            ust.setAttribute('href', '#');
+            ust.textContent = obj;
+            ustensilsDropdown.appendChild(ust);
+            totUstensils.push(dicUstensils.cle);
+            //console.log(totUstensils);    
+        })
 
         recipeContainer.classList.add('row');
         recipeContainer.setAttribute('role', 'text');

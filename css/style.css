@@ -94,6 +94,7 @@ h1{
 }
 .card-body{
     min-width: 350px;
+    background-color: #E7E7E7;
 }
 .card-text:nth-child(2){
     display: -webkit-box;
