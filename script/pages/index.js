@@ -14,7 +14,6 @@ async function getData(){
     .then(function(data){
         const recipes = data.recipes;
         recipes.forEach(recipe => {
-
             const Template = recipesFactory(recipe);
             section.append(Template.getRecipes());
             //const Template = new Recipes(recipe);
