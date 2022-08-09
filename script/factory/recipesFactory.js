@@ -66,27 +66,25 @@ function recipesFactory(data){
             table.append(p);
             totIngredients.push(dicIngredients.cle);             
         });
+
+        // filtre ingredient
         let filteredIngredients = [...new Set(totIngredients)];
-        //console.log(filteredIngredients);
-        for(let item of filteredIngredients) {
+        for(const[i, value] of filteredIngredients.entries()){
             const a = document.createElement('a');
             a.classList.add('dropdown-item');
             a.setAttribute('href', '#');
-            a.textContent = item;
-            ingredientsDropdown.append(a)
+            if(i === filteredIngredients.length - 1){
+                a.textContent = value;
+                ingredientsDropdown.append(a);
+            }
         }
         
         // dropdown menu
-        totAppliance.push(recipe._appliance);
+        /*totAppliance.push(recipe._appliance);
         let filteredAppliace = [...new Set(totAppliance)];
-        //console.log(filteredAppliace);
-        filteredAppliace.forEach(item => {
-            const app = document.createElement('a');
-            app.classList.add('dropdown-item');
-            app.setAttribute('href', '#');
-            app.textContent = item;
-            applianceDropdown.append(app);
-        })
+        console.log(filteredAppliace.length - 1);
+        */
+
 
         recipe._ustensils.forEach(obj => {
             dicUstensils.cle = obj;
