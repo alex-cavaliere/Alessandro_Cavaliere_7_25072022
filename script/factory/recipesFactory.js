@@ -7,8 +7,6 @@ let totAppliance = [];
 
 
 function recipesFactory(data){
-    const recipe = new Recipes(data);
-
     function getRecipes(){
         //console.log(recipe)
         const wrapper = document.createElement('div');
@@ -24,13 +22,13 @@ function recipesFactory(data){
         cardText.classList.add('card-text', 'row');
         const h2 = document.createElement('h2');
         h2.classList.add('col-8');
-        h2.textContent = recipe._name;
+        h2.textContent = data.name;
         const time = document.createElement('p');
         time.setAttribute('id', 'time');
         time.classList.add('col');
         const spanImg = document.createElement('span');
         const spanTime = document.createElement('span');
-        spanTime.textContent = recipe._time + ' min';
+        spanTime.textContent = data.time + ' min';
         spanTime.classList.add('time-icon');
         spanImg.classList.add('time-text');
         const timeImg = document.createElement('img');
@@ -40,13 +38,13 @@ function recipesFactory(data){
         const table = document.createElement('div');
         const description = document.createElement('p');
         description.classList.add('col-6', 'card-text');
-        description.textContent = recipe._description;
+        description.textContent = data.description;
         table.classList.add('table', 'col');
         /*for (let i of totIngredients){
             console.log(i, totIngredients.indexOf(i));
         }*/
         //iteration des toutes les ingredients
-        recipe._ingredients.forEach(obj => {
+        data.ingredients.forEach(obj => {
             const p = document.createElement('p');
             let ingredient = obj.ingredient;
             let quantity = obj.quantity;
@@ -80,13 +78,13 @@ function recipesFactory(data){
         }
         
         // dropdown menu
-        /*totAppliance.push(recipe._appliance);
+        /*totAppliance.push(data.appliance);
         let filteredAppliace = [...new Set(totAppliance)];
         console.log(filteredAppliace.length - 1);
         */
 
 
-        recipe._ustensils.forEach(obj => {
+        data.ustensils.forEach(obj => {
             dicUstensils.cle = obj;
             //console.log(dicUstensils)
             totUstensils.push(dicUstensils.cle);     
