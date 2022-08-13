@@ -16,27 +16,31 @@ mainInput.addEventListener('keyup', function(e){
 });
 
 function searchRecipe(recette){
+    let filtres = [];
     let result = [];
     for(let element of dicos){
         if(element.cle.toUpperCase().includes(recette.toUpperCase())){
-            if (result.length < 1){
-                result.push(element.recipe)
-            }
-            for (let recipe of result){
-                if(element.recipe == recipe){
-                    console.log(recipe)
-                    break;
-                }else{
-                    console.log(recipe)
-                    // jìai commenté cette push comment il est responsable du crash de la page
-                    
-                    //result.push(element.recipe);
-                }
-            }
+            filtres.push(element.recipe);
         }  
     }
-    for(let recipe of result){
-        displayRecipes(recipe, section);
+    for(let i = 0; i < filtres.length; i++){
+        if(result.length > 0){
+            exist = false;
+            for(let y = 0; y < result.length; y++){
+                if(filtres[i] == result[y]){
+                    exist = true;
+                    break;
+                }
+            }
+            if(!exist){
+                result.push(filtres[i])
+            }
+        }else{
+            result.push(filtres[i]);
+        }
+    }
+    for(let element of result){
+        displayRecipes(element, section);
     }
 }
 
