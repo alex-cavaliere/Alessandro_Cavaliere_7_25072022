@@ -80,10 +80,17 @@ function recipesFactory(data){
         }
         
         // dropdown menu
-        /*totAppliance.push(recipe._appliance);
+        totAppliance.push(recipe._appliance);
         let filteredAppliace = [...new Set(totAppliance)];
-        console.log(filteredAppliace.length - 1);
-        */
+        //console.log(filteredAppliace);
+        filteredAppliace.forEach(appliance => {
+            const app = document.createElement('a');
+            app.classList.add('dropdown-item');
+            app.setAttribute('href', '#');
+            app.textContent = appliance;
+            applianceDropdown.append(app);
+        })
+        
 
 
         recipe._ustensils.forEach(obj => {
@@ -93,12 +100,14 @@ function recipesFactory(data){
         })
         let filteredUstensils = [...new Set(totUstensils)];
         //console.log(filteredUstensils);
-        for(let i of filteredUstensils){
+        for(const[i, value] of filteredUstensils.entries()){
             const a = document.createElement('a');
             a.classList.add('dropdown-item');
             a.setAttribute('href', '#');
-            a.textContent = i;
-            ustensilsDropdown.append(a)
+            if(i === filteredUstensils.length - 1){
+                a.textContent = value;
+                ustensilsDropdown.append(a);
+            }
         }
 
         recipeContainer.classList.add('row');

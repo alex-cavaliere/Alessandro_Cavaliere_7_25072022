@@ -7,17 +7,26 @@ const input = document.querySelector('input');
 // filtre recettes 
 
 input.addEventListener('keyup', function(e){
-    let filter = e.target.value.toUpperCase();
-    let cards = Array.from(document.getElementsByClassName('wrapper'));
-    cards.forEach(card => {
-        let txtValue = card.textContent;
-        if(txtValue.toUpperCase().indexOf(filter) > -1){
-            card.style.display = '';
-        }else if(filter.length >= 3 ){
-            card.style.display = 'none'
+    let inputValue = e.target.value;
+    section.innerHTML = '';
+    if(inputValue.length >= 3){
+        searchRecipe(inputValue);
+    }
+});
+
+function searchRecipe(recette){
+    let filters = [];
+    dicos.forEach(element => {
+        if (element.cle.toLowerCase().indexOf(recette.toLowerCase()) > -1){
+            if(filters.indexOf(element.recipe) < 0){
+                filters.push(element.recipe);
+                displayRecipes(element.recipe, section);
+            }
+        }else{
+            console.log('no match');
         }
     })
-});
+};
 
 function displayRecipes(data, section){
     const Template = recipesFactory(data);
@@ -46,7 +55,7 @@ async function getData(){
             recipe.ustensils.forEach(ust => {
                 dicos.push({cle: ust, recipe});
             })
-            console.log(dicos)
+            //console.log(dicos)
             displayRecipes(recipe, section);
         })
         
