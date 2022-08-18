@@ -15,11 +15,19 @@ mainInput.addEventListener('keyup', function(e){
     }
 });
 
+/* creare funione searchRecipe(), avrà come paramentro l'input dell'utente.
+creare due array vuoti: filtres, result. 
+percorrere il dizionario dicos con un ciclo for, verificare se l'elemento
+include una ricetta nell'input utilizzatore e aggiungere l'elemento
+allìarray filtres. Dopodiché bisogna percorrere l'array filtres, 
+verificare se l'elemento esiste già ed aggiungerlo all'array result prima di 
+percorre quest'ultimo per applicare la funzione displayRecipes(). */
+
 function searchRecipe(recette){
     let filtres = [];
     let result = [];
     for(let element of dicos){
-        if(element.cle.toUpperCase().includes(recette.toUpperCase())){
+        if(element.cle.toLowerCase().includes(recette.toLowerCase())){
             filtres.push(element.recipe);
         }  
     }
