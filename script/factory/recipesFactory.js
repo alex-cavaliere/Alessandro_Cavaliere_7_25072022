@@ -66,21 +66,21 @@ function recipesFactory(data){
         });
 
         // filtre ingredient
+        ingredientsDropdown.innerHTML = '';
         let filteredIngredients = [...new Set(totIngredients)];
-        for(const[i, value] of filteredIngredients.entries()){
-            const a = document.createElement('a');
-            a.classList.add('dropdown-item');
-            a.setAttribute('href', '#');
-            if(i === filteredIngredients.length - 1){
-                a.textContent = value;
-                ingredientsDropdown.append(a);
-            }
+        for(let ingredient of filteredIngredients){
+            const ing = document.createElement('a');
+            ing.classList.add('dropdown-item');
+            ing.setAttribute('href', '#');
+            ing.textContent = ingredient;
+            ingredientsDropdown.append(ing);
         }
         
         // dropdown menu
         totAppliance.push(data.appliance);
         let filteredAppliace = [...new Set(totAppliance)];
         //console.log(filteredAppliace);
+        applianceDropdown.innerHTML = '';
         filteredAppliace.forEach(appliance => {
             const app = document.createElement('a');
             app.classList.add('dropdown-item');
@@ -98,15 +98,15 @@ function recipesFactory(data){
         })
         let filteredUstensils = [...new Set(totUstensils)];
         //console.log(filteredUstensils);
-        for(const[i, value] of filteredUstensils.entries()){
-            const a = document.createElement('a');
-            a.classList.add('dropdown-item');
-            a.setAttribute('href', '#');
-            if(i === filteredUstensils.length - 1){
-                a.textContent = value;
-                ustensilsDropdown.append(a);
-            }
+        ustensilsDropdown.innerHTML = '';
+        for(let ustensil of filteredUstensils){
+            const ust = document.createElement('a');
+            ust.classList.add('dropdown-item');
+            ust.setAttribute('href', '#');
+            ust.textContent = ustensil;
+            ustensilsDropdown.append(ust);
         }
+
 
         recipeContainer.classList.add('row');
         recipeContainer.setAttribute('role', 'text');

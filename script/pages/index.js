@@ -6,11 +6,20 @@ const filterInput = document.getElementsByName('filter');
 const filterItems = document.getElementsByClassName('dropdown-item');
 const input = document.querySelector('input');
 // filtre recettes
-/*
+
 filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
-    let filterValue = e.target.value;
-    searchFilter(filterValue);
-}))*/
+    let inputValue = e.target.value.toLowerCase();
+    let filters = Array.from(document.getElementsByClassName('dropdown-item'));
+    console.log(filters)
+    filters.forEach(filter => {
+        let txtValue = filter.textContent;
+        if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
+            filter.style.display = '';
+        }else if(inputValue.length >= 3 ){
+            filter.style.display = 'none'
+        }
+    })}
+))
 
 input.addEventListener('keyup', function(e){
     let inputValue = e.target.value;
@@ -19,10 +28,6 @@ input.addEventListener('keyup', function(e){
         searchRecipe(inputValue);
     }
 });
-/*
-function searchFilter(input){
-    
-}*/
 
 function searchRecipe(recette){
     let filters = [];
