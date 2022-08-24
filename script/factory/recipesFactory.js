@@ -1,9 +1,6 @@
-let dicIngredients = {};
-let dicUstensils = {};
-let totIngredients = [];
 let totUstensils = [];
 let totAppliance = [];
- 
+let totIngredients = [];
 
 
 function recipesFactory(data){
@@ -44,14 +41,15 @@ function recipesFactory(data){
             console.log(i, totIngredients.indexOf(i));
         }*/
         //iteration des toutes les ingredients
+        
         data.ingredients.forEach(obj => {
             const p = document.createElement('p');
             let ingredient = obj.ingredient;
             let quantity = obj.quantity;
             let unit = obj.unit;
-            dicIngredients = {cle : ingredient}
             p.classList.add('col', 'item');
-            //console.log(dicIngredients)
+            totIngredients.push(ingredient);
+            //console.log(ingredient)
             
             // iteration des tableaux des recettes
             if (Object.hasOwnProperty.call(obj, 'ingredient')){
@@ -61,43 +59,53 @@ function recipesFactory(data){
             }if(Object.hasOwnProperty.call(obj,'unit')){
                 p.innerHTML = `<span>${ingredient}: </span>${quantity} ${unit}`;
             }
-            table.append(p);
-            totIngredients.push(dicIngredients.cle);             
-        });
-
-        // filtre ingredient
-        let filteredIngredients = [...new Set(totIngredients)];
-        for(const[i, value] of filteredIngredients.entries()){
-            const a = document.createElement('a');
-            a.classList.add('dropdown-item');
-            a.setAttribute('href', '#');
-            if(i === filteredIngredients.length - 1){
-                a.textContent = value;
-                ingredientsDropdown.append(a);
-            }
-        }
-        
-        // dropdown menu
-        /*totAppliance.push(data.appliance);
-        let filteredAppliace = [...new Set(totAppliance)];
-        console.log(filteredAppliace.length - 1);
-        */
-
-
-        data.ustensils.forEach(obj => {
-            dicUstensils.cle = obj;
-            //console.log(dicUstensils)
-            totUstensils.push(dicUstensils.cle);     
+            table.append(p);             
         })
-        let filteredUstensils = [...new Set(totUstensils)];
-        //console.log(filteredUstensils);
-        for(let i of filteredUstensils){
+
+        // filter Ingredients
+
+        //console.log(totIngredients)
+        const filteredIngredients = totIngredients.filter(function(ele , pos){
+            return totIngredients.indexOf(ele) === pos;
+        })
+
+        filteredIngredients.forEach(ing => {
             const a = document.createElement('a');
             a.classList.add('dropdown-item');
             a.setAttribute('href', '#');
-            a.textContent = i;
-            ustensilsDropdown.append(a)
-        }
+            a.textContent = ing;
+            ingredientsDropdown.append(a);
+        })
+
+        // filter Appliance 
+
+        totAppliance.push(data.appliance);
+        const filteredAppliance = totAppliance.filter(function(ele , pos){
+            return totAppliance.indexOf(ele) === pos;
+        })
+        filteredAppliance.forEach(app => {
+            const appliance = document.createElement('a');
+            appliance.classList.add('dropdown-item');
+            appliance.setAttribute('href', '#');
+            appliance.textContent = app;
+            applianceDropdown.append(appliance);    
+        })
+        // filter Ustensils
+
+        data.ustensils.forEach(ust => {
+            totUstensils.push(ust);
+        })
+        const filteredUstensils = totUstensils.filter(function(ele,pos){
+            return totUstensils.indexOf(ele) === pos;
+        })
+    
+        filteredUstensils.forEach(ust => {
+            const ustensil = document.createElement('a');
+            ustensil.classList.add('dropdown-item');
+            ustensil.setAttribute('href', '#');
+            ustensil.textContent = ust;
+            ustensilsDropdown.append(ustensil);
+        })
 
         recipeContainer.classList.add('row');
         recipeContainer.setAttribute('role', 'text');

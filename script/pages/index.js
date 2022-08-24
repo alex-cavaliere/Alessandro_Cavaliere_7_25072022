@@ -3,7 +3,7 @@ const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const mainInput = document.getElementById('search-input');
-
+const filterInput = document.getElementsByName('filter');
 
 // filtre recettes 
 
@@ -15,13 +15,29 @@ mainInput.addEventListener('keyup', function(e){
     }
 });
 
-/* creare funione searchRecipe(), avrà come paramentro l'input dell'utente.
+/* Soluzione migliore
+ creare funione searchRecipe(), avrà come paramentro l'input dell'utente.
 creare due array vuoti: filtres, result. 
 percorrere il dizionario dicos con un ciclo for, verificare se l'elemento
 include una ricetta nell'input utilizzatore e aggiungere l'elemento
 allìarray filtres. Dopodiché bisogna percorrere l'array filtres, 
 verificare se l'elemento esiste già ed aggiungerlo all'array result prima di 
 percorre quest'ultimo per applicare la funzione displayRecipes(). */
+
+filterInput.forEach(input => input.addEventListener('keyup', function(e){
+    let inputValue = e.target.value.toLowerCase();
+    let filters = Array.from(document.getElementsByClassName('dropdown-item'));
+    console.log(filters)
+    filters.forEach(filter => {
+        let txtValue = filter.textContent;
+        if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
+            filter.style.display = '';
+        }else if(inputValue.length >= 3 ){
+            filter.style.display = 'none'
+        }
+    })
+    }
+))
 
 function searchRecipe(recette){
     let filtres = [];
