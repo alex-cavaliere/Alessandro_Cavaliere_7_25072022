@@ -2,9 +2,15 @@ let dicos = [];
 const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
+const filterInput = document.getElementsByName('filter');
+const filterItems = document.getElementsByClassName('dropdown-item');
 const input = document.querySelector('input');
-
-// filtre recettes 
+// filtre recettes
+/*
+filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
+    let filterValue = e.target.value;
+    searchFilter(filterValue);
+}))*/
 
 input.addEventListener('keyup', function(e){
     let inputValue = e.target.value;
@@ -13,6 +19,10 @@ input.addEventListener('keyup', function(e){
         searchRecipe(inputValue);
     }
 });
+/*
+function searchFilter(input){
+    
+}*/
 
 function searchRecipe(recette){
     let filters = [];
@@ -22,8 +32,6 @@ function searchRecipe(recette){
                 filters.push(element.recipe);
                 displayRecipes(element.recipe, section);
             }
-        }else{
-            console.log('no match');
         }
     })
 };
