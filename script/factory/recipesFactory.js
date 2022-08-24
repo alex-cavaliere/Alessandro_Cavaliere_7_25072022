@@ -68,7 +68,7 @@ function recipesFactory(data){
         const filteredIngredients = totIngredients.filter(function(ele , pos){
             return totIngredients.indexOf(ele) === pos;
         })
-
+        ingredientsDropdown.innerHTML = '';
         filteredIngredients.forEach(ing => {
             const a = document.createElement('a');
             a.classList.add('dropdown-item');
@@ -83,6 +83,7 @@ function recipesFactory(data){
         const filteredAppliance = totAppliance.filter(function(ele , pos){
             return totAppliance.indexOf(ele) === pos;
         })
+        applianceDropdown.innerHTML = '';
         filteredAppliance.forEach(app => {
             const appliance = document.createElement('a');
             appliance.classList.add('dropdown-item');
@@ -98,7 +99,7 @@ function recipesFactory(data){
         const filteredUstensils = totUstensils.filter(function(ele,pos){
             return totUstensils.indexOf(ele) === pos;
         })
-    
+        ustensilsDropdown.innerHTML = '';
         filteredUstensils.forEach(ust => {
             const ustensil = document.createElement('a');
             ustensil.classList.add('dropdown-item');
