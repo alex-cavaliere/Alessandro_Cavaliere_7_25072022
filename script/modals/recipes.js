@@ -1,4 +1,4 @@
-class Recipes {
+/*class Recipes {
     constructor(data){
         this._id = data.id
         this._name = data.name
@@ -39,4 +39,4 @@ class Recipes {
     get ustensils(){
         return this._ustensils
     }
-}
+}*/

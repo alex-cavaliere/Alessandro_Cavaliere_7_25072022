@@ -3,20 +3,29 @@ const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const filterInput = document.getElementsByName('filter');
-const filterItems = document.getElementsByClassName('dropdown-item');
 const input = document.querySelector('input');
+
 // filtre recettes
 
 filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
     let inputValue = e.target.value.toLowerCase();
     let filters = Array.from(document.getElementsByClassName('dropdown-item'));
-    console.log(filters)
+    const filterItems = Array.from(document.getElementsByClassName('dropdown-item'));
+    filterItems.forEach(item => item.addEventListener('click', function(){
+        dicos.forEach(element => {
+            if (element.cle.toLowerCase().indexOf(item.textContent.toLowerCase()) > -1){
+                section.innerHTML = '';
+                searchRecipe(item.textContent);
+            }
+        })
+    }))
+    console.log(filterItems)
     filters.forEach(filter => {
         let txtValue = filter.textContent;
         if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
             filter.style.display = '';
-        }else if(inputValue.length >= 3 ){
-            filter.style.display = 'none'
+        }else{
+            filter.style.display = 'none';
         }
     })}
 ))
@@ -26,8 +35,10 @@ input.addEventListener('keyup', function(e){
     section.innerHTML = '';
     if(inputValue.length >= 3){
         searchRecipe(inputValue);
+    }if(inputValue.length === 0){
+        searchRecipe(inputValue)
     }
-});
+})
 
 function searchRecipe(recette){
     let filters = [];
