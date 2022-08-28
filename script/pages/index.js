@@ -3,6 +3,7 @@ const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const mainInput = document.getElementById('search-input');
+const filterDiv = document.getElementById('filter-div');
 const filterInput = document.getElementsByName('filter');
 
 // filtre recettes 
@@ -12,22 +13,39 @@ mainInput.addEventListener('keyup', function(e){
     section.innerHTML = '';
     if(inputValue.length >= 3){
         searchRecipe(inputValue);
+    }else{
+        searchRecipe(inputValue);
     }
 });
-
-/* Soluzione migliore
- creare funione searchRecipe(), avrà come paramentro l'input dell'utente.
-creare due array vuoti: filtres, result. 
-percorrere il dizionario dicos con un ciclo for, verificare se l'elemento
-include una ricetta nell'input utilizzatore e aggiungere l'elemento
-allìarray filtres. Dopodiché bisogna percorrere l'array filtres, 
-verificare se l'elemento esiste già ed aggiungerlo all'array result prima di 
-percorre quest'ultimo per applicare la funzione displayRecipes(). */
-
 filterInput.forEach(input => input.addEventListener('keyup', function(e){
     let inputValue = e.target.value.toLowerCase();
-    let filters = Array.from(document.getElementsByClassName('dropdown-item'));
-    console.log(filters)
+    const filters = Array.from(document.getElementsByClassName('dropdown-item'));
+    filters.forEach(item => item.addEventListener('click', function(){
+        const itemCol = document.createElement('div');
+        const close = document.createElement('i');
+        close.classList.add('fa-solid', 'fa-xmark');
+        itemCol.classList.add('col-1', 'btn', 'actived');
+        itemCol.setAttribute('id', 'filter-btn');
+        itemCol.textContent = item.textContent;
+        itemCol.append(close);
+        filterDiv.innerHTML = '';
+        filterDiv.append(itemCol);
+        close.addEventListener('click', function(){
+            if(itemCol.classList.contains('actived')){
+                filterDiv.remove(itemCol);
+                itemCol.classList.remove('actived');
+            }if(!itemCol.classList.contains('actived')){
+                filterDiv.append(itemCol);
+                itemCol.classList.add('actived');
+            }
+        })
+        dicos.forEach(element => {
+            if (element.cle.toLowerCase().indexOf(item.textContent.toLowerCase()) > -1){
+                section.innerHTML = '';
+                searchRecipe(item.textContent);
+            }
+        })
+    }))
     filters.forEach(filter => {
         let txtValue = filter.textContent;
         if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
@@ -45,7 +63,7 @@ function searchRecipe(recette){
     for(let element of dicos){
         if(element.cle.toLowerCase().includes(recette.toLowerCase())){
             filtres.push(element.recipe);
-        }  
+        }
     }
     for(let i = 0; i < filtres.length; i++){
         if(result.length > 0){

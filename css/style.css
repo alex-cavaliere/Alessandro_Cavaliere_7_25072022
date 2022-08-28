@@ -112,4 +112,15 @@ h1{
 .table .item span{
     font-weight: bold;
 }
+#filter-div div{
+    background-color: #3282F7;
+    margin-left: 2.5em;
+    margin-top: 1em;
+    color: white;
+}
+#filter-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
