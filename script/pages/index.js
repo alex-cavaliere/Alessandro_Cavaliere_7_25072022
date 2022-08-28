@@ -3,6 +3,7 @@ const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const filterInput = document.getElementsByName('filter');
+const filterDiv = document.getElementById('filter-div');
 const input = document.querySelector('input');
 
 // filtre recettes
@@ -10,8 +11,25 @@ const input = document.querySelector('input');
 filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
     let inputValue = e.target.value.toLowerCase();
     let filters = Array.from(document.getElementsByClassName('dropdown-item'));
-    const filterItems = Array.from(document.getElementsByClassName('dropdown-item'));
-    filterItems.forEach(item => item.addEventListener('click', function(){
+    filters.forEach(item => item.addEventListener('click', function(){
+        const itemCol = document.createElement('div');
+        const close = document.createElement('i');
+        close.classList.add('fa-solid', 'fa-xmark');
+        itemCol.classList.add('col-1', 'btn', 'actived');
+        itemCol.setAttribute('id', 'filter-btn');
+        itemCol.textContent = item.textContent;
+        itemCol.append(close);
+        filterDiv.innerHTML = '';
+        filterDiv.append(itemCol);
+        close.addEventListener('click', function(){
+            if(itemCol.classList.contains('actived')){
+                filterDiv.remove(itemCol);
+                itemCol.classList.remove('actived');
+            }if(!itemCol.classList.contains('actived')){
+                filterDiv.append(itemCol);
+                itemCol.classList.add('actived');
+            }
+        })
         dicos.forEach(element => {
             if (element.cle.toLowerCase().indexOf(item.textContent.toLowerCase()) > -1){
                 section.innerHTML = '';
@@ -19,7 +37,6 @@ filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
             }
         })
     }))
-    console.log(filterItems)
     filters.forEach(filter => {
         let txtValue = filter.textContent;
         if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
