@@ -69,10 +69,14 @@ function recipesFactory(data){
         ingredientsDropdown.innerHTML = '';
         let filteredIngredients = [...new Set(totIngredients)];
         for(let ingredient of filteredIngredients){
-            const ing = document.createElement('a');
-            ing.classList.add('dropdown-item');
-            ing.setAttribute('href', '#');
+            const ing = document.createElement('button');
+            ing.classList.add('dropdown-item', 'ingredients');
+            ing.setAttribute('id', ingredient);
             ing.textContent = ingredient;
+            ing.addEventListener('click', function(){
+                section.innerHTML = '';
+                searchRecipe(ingredient);
+            })
             ingredientsDropdown.append(ing);
         }
         
@@ -82,9 +86,9 @@ function recipesFactory(data){
         //console.log(filteredAppliace);
         applianceDropdown.innerHTML = '';
         filteredAppliace.forEach(appliance => {
-            const app = document.createElement('a');
-            app.classList.add('dropdown-item');
-            app.setAttribute('href', '#');
+            const app = document.createElement('button');
+            app.classList.add('dropdown-item', 'appliance');
+            app.setAttribute('id', appliance);
             app.textContent = appliance;
             applianceDropdown.append(app);
         })
@@ -100,9 +104,9 @@ function recipesFactory(data){
         //console.log(filteredUstensils);
         ustensilsDropdown.innerHTML = '';
         for(let ustensil of filteredUstensils){
-            const ust = document.createElement('a');
-            ust.classList.add('dropdown-item');
-            ust.setAttribute('href', '#');
+            const ust = document.createElement('button');
+            ust.classList.add('dropdown-item', 'ustensils');
+            ust.setAttribute('id', ustensil)
             ust.textContent = ustensil;
             ustensilsDropdown.append(ust);
         }

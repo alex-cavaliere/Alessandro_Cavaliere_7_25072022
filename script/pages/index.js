@@ -5,40 +5,67 @@ const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const filterInput = document.getElementsByName('filter');
 const filterDiv = document.getElementById('filter-div');
 const input = document.querySelector('input');
-
+const ingredientsFilter = document.getElementById('form1')
+const applianceFilter = document.getElementById('form2')
+const ustensilsFilter = document.getElementById('form3')
 // filtre recettes
 
-filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
+//console.log(filterInput)
+ingredientsFilter.addEventListener('input', function(){
+    if(ingredientsFilter.value !== ''){
+        let filters = Array.from(document.getElementsByClassName('dropdown-item'));
+        filters.forEach(filter => {
+            let txtValue = filter.textContent;
+            if(txtValue.toLocaleLowerCase().indexOf(ingredientsFilter.value) > -1){
+                filter.style.display = '';
+            }else{
+                filter.style.display = 'none';
+            }
+        })
+    }
+})
+
+
+/*filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
     let inputValue = e.target.value.toLowerCase();
     let filters = Array.from(document.getElementsByClassName('dropdown-item'));
     filters.forEach(item => item.addEventListener('click', function(){
+        item.addEventListener('click', function(){
+            console.log(item.id)
+            section.innerHTML = '';
+            searchRecipe(item.id)
+        })
+        /*
         const itemCol = document.createElement('div');
         const close = document.createElement('i');
         close.classList.add('fa-solid', 'fa-xmark');
         itemCol.classList.add('col-1', 'btn', 'actived');
         itemCol.setAttribute('id', 'filter-btn');
+        if(item.classList.contains('ingredients')){
+            itemCol.style.backgroundColor = '#3282F7';
+        }if(item.classList.contains('appliance')){
+            itemCol.style.backgroundColor = '#68D9A4'
+        }if(item.classList.contains('ustensils-dropdown')){
+            itemCol.style.backgroundColor = '#ED6454';
+        }
         itemCol.textContent = item.textContent;
         itemCol.append(close);
         filterDiv.innerHTML = '';
         filterDiv.append(itemCol);
-        if(this.parentElement.id === 'ingredients-dropdown'){
-            itemCol.style.backgroundColor = '#3282F7';
-        }if(this.parentElement.id === 'appliance-dropdown'){
-            itemCol.style.backgroundColor = '#68D9A4'
-        }if(this.parentElement.id === 'ustensils-dropdown'){
-            itemCol.style.backgroundColor = '#ED6454';
-        }
         close.addEventListener('click', function(){
             if(itemCol.classList.contains('actived')){
                 itemCol.classList.remove('actived');
+                itemCol.style.display = 'none';
             }if(!itemCol.classList.contains('actived')){
                 itemCol.classList.add('actived');
-                itemCol.style.display = 'none';
             }
         })
-        dicos.forEach(element => {
-            if (element.cle.toLowerCase().indexOf(item.textContent.toLowerCase()) > -1){
-                section.innerHTML = '';
+        section.innerHTML = '';
+        searchRecipe(item.textContent, section)
+        /*dicos.forEach(element => {
+            if (element.cle.toLowerCase().includes(item.textContent.toLowerCase())){
+                //section.innerHTML = '';
+                console.log(item.textContent)
                 searchRecipe(item.textContent);
             }
         })
@@ -52,6 +79,7 @@ filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
         }
     })}
 ))
+*/
 
 input.addEventListener('keyup', function(e){
     let inputValue = e.target.value;
@@ -66,14 +94,24 @@ input.addEventListener('keyup', function(e){
 
 function searchRecipe(recette){
     let filters = [];
+    let exist = false;
+    console.log(recette)
     dicos.forEach(element => {
-        if (element.cle.toLowerCase().indexOf(recette.toLowerCase()) > -1){
+        if (element.cle.toLowerCase().includes(recette.toLowerCase())){
+            exist = true;
             if(filters.indexOf(element.recipe) < 0){
                 filters.push(element.recipe);
                 displayRecipes(element.recipe, section);
+            }else{
+                exist = false;
             }
+        }else{
+            console.log(recette);
         }
     })
+    if (!exist){
+        section.innerHTML = 'Error';
+    }
 };
 
 function displayRecipes(data, section){
