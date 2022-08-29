@@ -16,10 +16,10 @@ mainInput.addEventListener('keyup', function(e){
     }else{
         searchRecipe(inputValue);
     }
-});
-filterInput.forEach(input => input.addEventListener('keyup', function(e){
+})
+filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
     let inputValue = e.target.value.toLowerCase();
-    const filters = Array.from(document.getElementsByClassName('dropdown-item'));
+    let filters = Array.from(document.getElementsByClassName('dropdown-item'));
     filters.forEach(item => item.addEventListener('click', function(){
         const itemCol = document.createElement('div');
         const close = document.createElement('i');
@@ -30,13 +30,19 @@ filterInput.forEach(input => input.addEventListener('keyup', function(e){
         itemCol.append(close);
         filterDiv.innerHTML = '';
         filterDiv.append(itemCol);
+        if(this.parentElement.id === 'ingredients-dropdown'){
+            itemCol.style.backgroundColor = '#3282F7';
+        }else if(this.parentElement.id === 'appliance-dropdown'){
+            itemCol.style.backgroundColor = '#68D9A4'
+        }else if(this.parentElement.id === 'ustensils-dropdown'){
+            itemCol.style.backgroundColor = '#ED6454';
+        }
         close.addEventListener('click', function(){
             if(itemCol.classList.contains('actived')){
-                filterDiv.remove(itemCol);
                 itemCol.classList.remove('actived');
             }if(!itemCol.classList.contains('actived')){
-                filterDiv.append(itemCol);
                 itemCol.classList.add('actived');
+                itemCol.style.display = 'none';
             }
         })
         dicos.forEach(element => {
@@ -50,11 +56,10 @@ filterInput.forEach(input => input.addEventListener('keyup', function(e){
         let txtValue = filter.textContent;
         if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
             filter.style.display = '';
-        }else if(inputValue.length >= 3 ){
-            filter.style.display = 'none'
+        }else{
+            filter.style.display = 'none';
         }
-    })
-    }
+    })}
 ))
 
 function searchRecipe(recette){
