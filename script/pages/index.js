@@ -21,12 +21,18 @@ filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
         itemCol.append(close);
         filterDiv.innerHTML = '';
         filterDiv.append(itemCol);
+        if(this.parentElement.id === 'ingredients-dropdown'){
+            itemCol.style.backgroundColor = '#3282F7';
+        }else if(this.parentElement.id === 'appliance-dropdown'){
+            itemCol.style.backgroundColor = '#68D9A4'
+        }else if(this.parentElement.id === 'ustensils-dropdown'){
+            itemCol.style.backgroundColor = '#ED6454';
+        }
         close.addEventListener('click', function(){
             if(itemCol.classList.contains('actived')){
-                filterDiv.remove(itemCol);
                 itemCol.classList.remove('actived');
             }if(!itemCol.classList.contains('actived')){
-                filterDiv.append(itemCol);
+                itemCol.style.display = 'none';
                 itemCol.classList.add('actived');
             }
         })
@@ -52,7 +58,8 @@ input.addEventListener('keyup', function(e){
     section.innerHTML = '';
     if(inputValue.length >= 3){
         searchRecipe(inputValue);
-    }if(inputValue.length === 0){
+    }
+    if(inputValue.length === 0){
         searchRecipe(inputValue)
     }
 })
