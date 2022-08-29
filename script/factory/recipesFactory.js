@@ -69,44 +69,95 @@ function recipesFactory(data){
             return totIngredients.indexOf(ele) === pos;
         })
         ingredientsDropdown.innerHTML = '';
-        filteredIngredients.forEach(ing => {
-            const a = document.createElement('a');
-            a.classList.add('dropdown-item');
-            a.setAttribute('href', '#');
-            a.textContent = ing;
-            ingredientsDropdown.append(a);
-        })
-
-        // filter Appliance 
-
+        for(let ingredient of filteredIngredients){
+            const ing = document.createElement('button');
+            ing.classList.add('dropdown-item', 'ingredients');
+            ing.setAttribute('id', ingredient);
+            ing.textContent = ingredient;
+            ing.addEventListener('click', function(){
+                //let tagList = Array.from(filterBtn);
+                //console.log(tagList)
+                const ingredientTag = document.createElement('div');
+                const close = document.createElement('i');
+                close.classList.add('fa-solid', 'fa-xmark')
+                ingredientTag.classList.add('col-1', 'btn');
+                ingredientTag.setAttribute('id', 'filter-btn');
+                ingredientTag.setAttribute('name', 'filter-btn');
+                ingredientTag.style.backgroundColor = '#3282F7';
+                ingredientTag.textContent = ingredient;
+                ingredientTag.append(close);
+                close.addEventListener('click', function(){
+                    ingredientTag.style.display = 'none';
+                })
+                filterDiv.append(ingredientTag);
+                section.innerHTML = '';
+                searchRecipe(ingredient);
+            })
+            ingredientsDropdown.append(ing);
+        }
+        
+        // dropdown menu
         totAppliance.push(data.appliance);
-        const filteredAppliance = totAppliance.filter(function(ele , pos){
-            return totAppliance.indexOf(ele) === pos;
-        })
+        let filteredAppliace = [...new Set(totAppliance)];
+        //console.log(filteredAppliace);
         applianceDropdown.innerHTML = '';
-        filteredAppliance.forEach(app => {
-            const appliance = document.createElement('a');
-            appliance.classList.add('dropdown-item');
-            appliance.setAttribute('href', '#');
-            appliance.textContent = app;
-            applianceDropdown.append(appliance);    
+        filteredAppliace.forEach(appliance => {
+            const app = document.createElement('button');
+            app.classList.add('dropdown-item', 'appliance');
+            app.setAttribute('id', appliance);
+            app.textContent = appliance;
+            app.addEventListener('click', function(){
+                const applianceTag = document.createElement('div');
+                const close = document.createElement('i');
+                close.classList.add('fa-solid', 'fa-xmark')
+                applianceTag.classList.add('col-1', 'btn');
+                applianceTag.setAttribute('id', 'filter-btn');
+                applianceTag.setAttribute('name', 'filter-btn');
+                applianceTag.style.backgroundColor = '#68D9A4';
+                applianceTag.textContent = appliance;
+                applianceTag.append(close);
+                close.addEventListener('click', function(){
+                    applianceTag.style.display = 'none';
+                })
+                filterDiv.append(applianceTag);
+                section.innerHTML = '';
+                searchRecipe(appliance);
+            })
+            applianceDropdown.append(app);
         })
-        // filter Ustensils
-
-        data.ustensils.forEach(ust => {
-            totUstensils.push(ust);
+        
+        data.ustensils.forEach(obj => {
+            ustensil = obj;
+            //console.log(dicUstensils)
+            totUstensils.push(ustensil);     
         })
-        const filteredUstensils = totUstensils.filter(function(ele,pos){
-            return totUstensils.indexOf(ele) === pos;
-        })
+        let filteredUstensils = [...new Set(totUstensils)];
+        //console.log(filteredUstensils);
         ustensilsDropdown.innerHTML = '';
-        filteredUstensils.forEach(ust => {
-            const ustensil = document.createElement('a');
-            ustensil.classList.add('dropdown-item');
-            ustensil.setAttribute('href', '#');
-            ustensil.textContent = ust;
-            ustensilsDropdown.append(ustensil);
-        })
+        for(let ustensil of filteredUstensils){
+            const ust = document.createElement('button');
+            ust.classList.add('dropdown-item', 'ustensils');
+            ust.setAttribute('id', ustensil)
+            ust.textContent = ustensil;
+            ust.addEventListener('click', function(){
+                const ustensilsTag = document.createElement('div');
+                const close = document.createElement('i');
+                close.classList.add('fa-solid', 'fa-xmark')
+                ustensilsTag.classList.add('col-1', 'btn');
+                ustensilsTag.setAttribute('id', 'filter-btn');
+                ustensilsTag.setAttribute('name', 'filter-btn');
+                ustensilsTag.style.backgroundColor = '#ED6454';
+                ustensilsTag.textContent = ustensil;
+                ustensilsTag.append(close);
+                close.addEventListener('click', function(){
+                    ustensilsTag.style.display = 'none';
+                })
+                filterDiv.append(ustensilsTag);
+                section.innerHTML = '';
+                searchRecipe(ustensil);
+            })
+            ustensilsDropdown.append(ust);
+        }
 
         recipeContainer.classList.add('row');
         recipeContainer.setAttribute('role', 'text');

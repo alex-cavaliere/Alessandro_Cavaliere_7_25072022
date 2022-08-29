@@ -6,6 +6,7 @@ const mainInput = document.getElementById('search-input');
 const filterDiv = document.getElementById('filter-div');
 const filterInput = document.getElementsByName('filter');
 
+
 // filtre recettes 
 
 mainInput.addEventListener('keyup', function(e){
@@ -17,50 +18,51 @@ mainInput.addEventListener('keyup', function(e){
         searchRecipe(inputValue);
     }
 })
-filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
-    let inputValue = e.target.value.toLowerCase();
-    let filters = Array.from(document.getElementsByClassName('dropdown-item'));
-    filters.forEach(item => item.addEventListener('click', function(){
-        const itemCol = document.createElement('div');
-        const close = document.createElement('i');
-        close.classList.add('fa-solid', 'fa-xmark');
-        itemCol.classList.add('col-1', 'btn', 'actived');
-        itemCol.setAttribute('id', 'filter-btn');
-        itemCol.textContent = item.textContent;
-        itemCol.append(close);
-        filterDiv.innerHTML = '';
-        filterDiv.append(itemCol);
-        if(this.parentElement.id === 'ingredients-dropdown'){
-            itemCol.style.backgroundColor = '#3282F7';
-        }else if(this.parentElement.id === 'appliance-dropdown'){
-            itemCol.style.backgroundColor = '#68D9A4'
-        }else if(this.parentElement.id === 'ustensils-dropdown'){
-            itemCol.style.backgroundColor = '#ED6454';
-        }
-        close.addEventListener('click', function(){
-            if(itemCol.classList.contains('actived')){
-                itemCol.classList.remove('actived');
-            }if(!itemCol.classList.contains('actived')){
-                itemCol.classList.add('actived');
-                itemCol.style.display = 'none';
+const ingredientsFilter = document.getElementById('form1')
+const applianceFilter = document.getElementById('form2')
+const ustensilsFilter = document.getElementById('form3')
+// filtre recettes
+
+//console.log(filterInput)
+ingredientsFilter.addEventListener('input', function(){
+    if(ingredientsFilter.value !== ''){
+        let filters = Array.from(document.getElementsByClassName('dropdown-item'));
+        filters.forEach(filter => {
+            let txtValue = filter.textContent;
+            if(txtValue.toLocaleLowerCase().indexOf(ingredientsFilter.value) > -1){
+                filter.style.display = '';
+            }else{
+                filter.style.display = 'none';
             }
         })
-        dicos.forEach(element => {
-            if (element.cle.toLowerCase().indexOf(item.textContent.toLowerCase()) > -1){
-                section.innerHTML = '';
-                searchRecipe(item.textContent);
+    }
+})
+applianceFilter.addEventListener('input', function(){
+    if(applianceFilter.value !== ''){
+        let filters = Array.from(document.getElementsByClassName('dropdown-item'));
+        filters.forEach(filter => {
+            let txtValue = filter.textContent;
+            if(txtValue.toLocaleLowerCase().indexOf(applianceFilter.value) > -1){
+                filter.style.display = '';
+            }else{
+                filter.style.display = 'none';
             }
         })
-    }))
-    filters.forEach(filter => {
-        let txtValue = filter.textContent;
-        if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
-            filter.style.display = '';
-        }else{
-            filter.style.display = 'none';
-        }
-    })}
-))
+    }
+})
+ustensilsFilter.addEventListener('input', function(){
+    if(ustensilsFilter.value !== ''){
+        let filters = Array.from(document.getElementsByClassName('dropdown-item'));
+        filters.forEach(filter => {
+            let txtValue = filter.textContent;
+            if(txtValue.toLocaleLowerCase().indexOf(ustensilsFilter.value) > -1){
+                filter.style.display = '';
+            }else{
+                filter.style.display = 'none';
+            }
+        })
+    }
+})
 
 function searchRecipe(recette){
     let filtres = [];
@@ -85,6 +87,9 @@ function searchRecipe(recette){
         }else{
             result.push(filtres[i]);
         }
+    }
+    if(filtres.length < 1){
+        section.innerHTML = '<h1> « Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc. </h1>';
     }
     for(let element of result){
         displayRecipes(element, section);
