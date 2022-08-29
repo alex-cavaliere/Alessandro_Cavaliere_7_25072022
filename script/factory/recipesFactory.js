@@ -1,5 +1,3 @@
-let dicIngredients = {};
-let dicUstensils = {};
 let totIngredients = [];
 let totUstensils = [];
 let totAppliance = [];
@@ -41,9 +39,6 @@ function recipesFactory(data){
         description.classList.add('col-6', 'card-text');
         description.textContent = data.description;
         table.classList.add('table', 'col');
-        /*for (let i of totIngredients){
-            console.log(i, totIngredients.indexOf(i));
-        }*/
         //iteration des toutes les ingredients
         data.ingredients.forEach(obj => {
             const p = document.createElement('p');
@@ -74,6 +69,21 @@ function recipesFactory(data){
             ing.setAttribute('id', ingredient);
             ing.textContent = ingredient;
             ing.addEventListener('click', function(){
+                //let tagList = Array.from(filterBtn);
+                //console.log(tagList)
+                const ingredientTag = document.createElement('div');
+                const close = document.createElement('i');
+                close.classList.add('fa-solid', 'fa-xmark')
+                ingredientTag.classList.add('col-1', 'btn');
+                ingredientTag.setAttribute('id', 'filter-btn');
+                ingredientTag.setAttribute('name', 'filter-btn');
+                ingredientTag.style.backgroundColor = '#3282F7';
+                ingredientTag.textContent = ingredient;
+                ingredientTag.append(close);
+                close.addEventListener('click', function(){
+                    ingredientTag.style.display = 'none';
+                })
+                filterDiv.append(ingredientTag);
                 section.innerHTML = '';
                 searchRecipe(ingredient);
             })
@@ -90,15 +100,32 @@ function recipesFactory(data){
             app.classList.add('dropdown-item', 'appliance');
             app.setAttribute('id', appliance);
             app.textContent = appliance;
+            app.addEventListener('click', function(){
+                const applianceTag = document.createElement('div');
+                const close = document.createElement('i');
+                close.classList.add('fa-solid', 'fa-xmark')
+                applianceTag.classList.add('col-1', 'btn');
+                applianceTag.setAttribute('id', 'filter-btn');
+                applianceTag.setAttribute('name', 'filter-btn');
+                applianceTag.style.backgroundColor = '#68D9A4';
+                applianceTag.textContent = appliance;
+                applianceTag.append(close);
+                close.addEventListener('click', function(){
+                    applianceTag.style.display = 'none';
+                })
+                filterDiv.append(applianceTag);
+                section.innerHTML = '';
+                searchRecipe(appliance);
+            })
             applianceDropdown.append(app);
         })
         
 
 
         data.ustensils.forEach(obj => {
-            dicUstensils.cle = obj;
+            ustensil = obj;
             //console.log(dicUstensils)
-            totUstensils.push(dicUstensils.cle);     
+            totUstensils.push(ustensil);     
         })
         let filteredUstensils = [...new Set(totUstensils)];
         //console.log(filteredUstensils);
@@ -108,6 +135,23 @@ function recipesFactory(data){
             ust.classList.add('dropdown-item', 'ustensils');
             ust.setAttribute('id', ustensil)
             ust.textContent = ustensil;
+            ust.addEventListener('click', function(){
+                const ustensilsTag = document.createElement('div');
+                const close = document.createElement('i');
+                close.classList.add('fa-solid', 'fa-xmark')
+                ustensilsTag.classList.add('col-1', 'btn');
+                ustensilsTag.setAttribute('id', 'filter-btn');
+                ustensilsTag.setAttribute('name', 'filter-btn');
+                ustensilsTag.style.backgroundColor = '#ED6454';
+                ustensilsTag.textContent = ustensil;
+                ustensilsTag.append(close);
+                close.addEventListener('click', function(){
+                    ustensilsTag.style.display = 'none';
+                })
+                filterDiv.append(ustensilsTag);
+                section.innerHTML = '';
+                searchRecipe(ustensil);
+            })
             ustensilsDropdown.append(ust);
         }
 
