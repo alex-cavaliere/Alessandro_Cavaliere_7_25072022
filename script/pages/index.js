@@ -23,17 +23,17 @@ filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
         filterDiv.append(itemCol);
         if(this.parentElement.id === 'ingredients-dropdown'){
             itemCol.style.backgroundColor = '#3282F7';
-        }else if(this.parentElement.id === 'appliance-dropdown'){
+        }if(this.parentElement.id === 'appliance-dropdown'){
             itemCol.style.backgroundColor = '#68D9A4'
-        }else if(this.parentElement.id === 'ustensils-dropdown'){
+        }if(this.parentElement.id === 'ustensils-dropdown'){
             itemCol.style.backgroundColor = '#ED6454';
         }
         close.addEventListener('click', function(){
             if(itemCol.classList.contains('actived')){
                 itemCol.classList.remove('actived');
             }if(!itemCol.classList.contains('actived')){
-                itemCol.style.display = 'none';
                 itemCol.classList.add('actived');
+                itemCol.style.display = 'none';
             }
         })
         dicos.forEach(element => {
