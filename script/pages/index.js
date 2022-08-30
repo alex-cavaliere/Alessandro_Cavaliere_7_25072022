@@ -2,6 +2,9 @@ let dicos = [];
 const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
+ingredientsDropdown.classList.add('dropdown');
+applianceDropdown.classList.add('dropdown');
+ustensilsDropdown.classList.add('dropdown');
 const filterInput = document.getElementsByName('filter');
 const filterDiv = document.getElementById('filter-div');
 const input = document.querySelector('input');
@@ -51,62 +54,6 @@ ustensilsFilter.addEventListener('input', function(){
     }
 })
 
-
-/*filterInput.forEach(filter => filter.addEventListener('keyup', function(e){
-    let inputValue = e.target.value.toLowerCase();
-    let filters = Array.from(document.getElementsByClassName('dropdown-item'));
-    filters.forEach(item => item.addEventListener('click', function(){
-        item.addEventListener('click', function(){
-            console.log(item.id)
-            section.innerHTML = '';
-            searchRecipe(item.id)
-        })
-        /*
-        const itemCol = document.createElement('div');
-        const close = document.createElement('i');
-        close.classList.add('fa-solid', 'fa-xmark');
-        itemCol.classList.add('col-1', 'btn', 'actived');
-        itemCol.setAttribute('id', 'filter-btn');
-        if(item.classList.contains('ingredients')){
-            itemCol.style.backgroundColor = '#3282F7';
-        }if(item.classList.contains('appliance')){
-            itemCol.style.backgroundColor = '#68D9A4'
-        }if(item.classList.contains('ustensils-dropdown')){
-            itemCol.style.backgroundColor = '#ED6454';
-        }
-        itemCol.textContent = item.textContent;
-        itemCol.append(close);
-        filterDiv.innerHTML = '';
-        filterDiv.append(itemCol);
-        close.addEventListener('click', function(){
-            if(itemCol.classList.contains('actived')){
-                itemCol.classList.remove('actived');
-                itemCol.style.display = 'none';
-            }if(!itemCol.classList.contains('actived')){
-                itemCol.classList.add('actived');
-            }
-        })
-        section.innerHTML = '';
-        searchRecipe(item.textContent, section)
-        /*dicos.forEach(element => {
-            if (element.cle.toLowerCase().includes(item.textContent.toLowerCase())){
-                //section.innerHTML = '';
-                console.log(item.textContent)
-                searchRecipe(item.textContent);
-            }
-        })
-    }))
-    filters.forEach(filter => {
-        let txtValue = filter.textContent;
-        if(txtValue.toLocaleLowerCase().indexOf(inputValue) > -1){
-            filter.style.display = '';
-        }else{
-            filter.style.display = 'none';
-        }
-    })}
-))
-*/
-
 input.addEventListener('keyup', function(e){
     let inputValue = e.target.value;
     section.innerHTML = '';
@@ -140,7 +87,7 @@ function displayRecipes(data, section){
 
 // api pour recuperer les donnes json
 
-const section = document.querySelector('section');
+const section = document.getElementById('recipes_cards');
 async function getData(){
     fetch('./data/recipes.json')
     .then(function(res){

@@ -29,10 +29,10 @@ a{
     display: block;
     max-width: max-content;
 }
-section{
+#recipes_cards{
     font-size: 12px;
 }
-section h2, section #time{
+#recipes_cards h2, #recipes_cards #time{
     font-size: 18px;
     font-family: 'DM Sans-s', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -85,8 +85,22 @@ h1{
 #third_dropdown div, #third_dropdown button, #form3{
     background-color: #ED6454;
 }
+#first_dropdown .dropdown-item:hover, #second_dropdown .dropdown-item:hover, #third_dropdown .dropdown-item:hover{
+    background-color: white;
+    width: fit-content;
+}
 .dropdown-menu button{
     color: white;
+    height: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dropdown-menu{
+    width: 667px;
+}
+.dropdown-menu button:hover{
+    overflow: visible;
 }
 #time span img{
     margin-bottom: 0.25em;
@@ -114,10 +128,22 @@ h1{
 }
 #filter-div div{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-left: 2.5em;
     margin-top: 1em;
     color: white;
 }
-
+.dropdown{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+@media screen and (max-width:700px){
+    .dropdown-menu{
+        width: auto;
+    }
+    .dropdown{
+        grid-template-columns: auto;
+    }
+}

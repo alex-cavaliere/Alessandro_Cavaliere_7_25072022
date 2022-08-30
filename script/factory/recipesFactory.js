@@ -75,7 +75,6 @@ function recipesFactory(data){
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark')
                 ingredientTag.classList.add('col-1', 'btn');
-                ingredientTag.setAttribute('id', 'filter-btn');
                 ingredientTag.setAttribute('name', 'filter-btn');
                 ingredientTag.style.backgroundColor = '#3282F7';
                 ingredientTag.textContent = ingredient;
@@ -105,7 +104,6 @@ function recipesFactory(data){
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark')
                 applianceTag.classList.add('col-1', 'btn');
-                applianceTag.setAttribute('id', 'filter-btn');
                 applianceTag.setAttribute('name', 'filter-btn');
                 applianceTag.style.backgroundColor = '#68D9A4';
                 applianceTag.textContent = appliance;
@@ -140,7 +138,6 @@ function recipesFactory(data){
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark')
                 ustensilsTag.classList.add('col-1', 'btn');
-                ustensilsTag.setAttribute('id', 'filter-btn');
                 ustensilsTag.setAttribute('name', 'filter-btn');
                 ustensilsTag.style.backgroundColor = '#ED6454';
                 ustensilsTag.textContent = ustensil;
