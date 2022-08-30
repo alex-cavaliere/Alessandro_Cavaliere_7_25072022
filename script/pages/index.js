@@ -2,10 +2,12 @@ let dicos = [];
 const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
+ingredientsDropdown.classList.add('dropdown');
+applianceDropdown.classList.add('dropdown');
+ustensilsDropdown.classList.add('dropdown');
 const mainInput = document.getElementById('search-input');
 const filterDiv = document.getElementById('filter-div');
 const filterInput = document.getElementsByName('filter');
-
 
 // filtre recettes 
 
@@ -89,7 +91,7 @@ function searchRecipe(recette){
         }
     }
     if(filtres.length < 1){
-        section.innerHTML = '<h1> « Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc. </h1>';
+        section.innerHTML = '<h1 class="mt-4"> « Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc. </h1>';
     }
     for(let element of result){
         displayRecipes(element, section);
@@ -103,7 +105,7 @@ function displayRecipes(data, section){
 
 // api pour recuperer les donnes json
 
-const section = document.querySelector('section');
+const section = document.getElementById('recipes_cards')
 async function getData(){
     fetch('./data/recipes.json')
     .then(function(res){
