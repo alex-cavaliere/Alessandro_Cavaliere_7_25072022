@@ -67,30 +67,29 @@ ustensilsFilter.addEventListener('input', function(){
 })
 
 function searchRecipe(recette){
-    let filtres = [];
+    let filters = [];
     let result = [];
     for(let element of dicos){
         if(element.cle.toLowerCase().includes(recette.toLowerCase())){
-            filtres.push(element.recipe);
+            filters.push(element.recipe);
         }
     }
-    for(let i = 0; i < filtres.length; i++){
+    for(let i = 0; i < filters.length; i++){
         if(result.length > 0){
             exist = false;
             for(let y = 0; y < result.length; y++){
-                if(filtres[i] == result[y]){
+                if(filters[i] == result[y]){
                     exist = true;
                     break;
                 }
-            }
-            if(!exist){
-                result.push(filtres[i])
+            }if(!exist){
+                result.push(filters[i])
             }
         }else{
-            result.push(filtres[i]);
+            result.push(filters[i]);
         }
     }
-    if(filtres.length < 1){
+    if(filters.length < 1){
         section.innerHTML = '<h1 class="mt-4"> « Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc. </h1>';
     }
     for(let element of result){

@@ -4,6 +4,7 @@ let totIngredients = [];
 let tags = [];
 
 
+
 function recipesFactory(data){
     function getRecipes(){
         //console.log(recipe)
@@ -73,8 +74,6 @@ function recipesFactory(data){
             ing.setAttribute('id', ingredient);
             ing.textContent = ingredient;
             ing.addEventListener('click', function(){
-                //let tagList = Array.from(filterBtn);
-                //console.log(tagList)
                 const ingredientTag = document.createElement('div');
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark')
@@ -83,22 +82,29 @@ function recipesFactory(data){
                 ingredientTag.style.backgroundColor = '#3282F7';
                 ingredientTag.textContent = ingredient;
                 ingredientTag.append(close);
+                let index = tags.findIndex(tag => tag == ing.id);
+                tags.push(ingredient)
+                if(index < 0){
+                    filterDiv.append(ingredientTag);
+                    section.innerHTML = '';
+                    searchRecipe(ingredient);
+                }else{
+                    tags.pop(ingredient)
+                }
                 close.addEventListener('click', function(){
                     ingredientTag.style.display = 'none';
+                    tags.pop(ingredient);
                 })
-                filterDiv.append(ingredientTag);
-                section.innerHTML = '';
-                searchRecipe(ingredient);
             })
             ingredientsDropdown.append(ing);
         }
         
         // dropdown menu
         totAppliance.push(data.appliance);
-        let filteredAppliace = [...new Set(totAppliance)];
-        //console.log(filteredAppliace);
+        let filteredAppliance = [...new Set(totAppliance)];
+        //console.log(filteredAppliance);
         applianceDropdown.innerHTML = '';
-        filteredAppliace.forEach(appliance => {
+        filteredAppliance.forEach(appliance => {
             const app = document.createElement('button');
             app.classList.add('dropdown-item', 'appliance');
             app.setAttribute('id', appliance);
@@ -112,12 +118,19 @@ function recipesFactory(data){
                 applianceTag.style.backgroundColor = '#68D9A4';
                 applianceTag.textContent = appliance;
                 applianceTag.append(close);
+                let index = tags.findIndex(tag => tag == app.id);
+                tags.push(appliance)
+                if(index < 0){
+                    filterDiv.append(applianceTag);
+                    section.innerHTML = '';
+                    searchRecipe(appliance);
+                }else{
+                    tags.pop(appliance)
+                }
                 close.addEventListener('click', function(){
                     applianceTag.style.display = 'none';
+                    tags.pop(appliance);
                 })
-                filterDiv.append(applianceTag);
-                section.innerHTML = '';
-                searchRecipe(appliance);
             })
             applianceDropdown.append(app);
         })
@@ -144,12 +157,19 @@ function recipesFactory(data){
                 ustensilsTag.style.backgroundColor = '#ED6454';
                 ustensilsTag.textContent = ustensil;
                 ustensilsTag.append(close);
+                let index = tags.findIndex(tag => tag == ust.id);
+                tags.push(ustensil)
+                if(index < 0){
+                    filterDiv.append(ustensilsTag);
+                    section.innerHTML = '';
+                    searchRecipe(ustensil);
+                }else{
+                    tags.pop(ustensil)
+                }
                 close.addEventListener('click', function(){
                     ustensilsTag.style.display = 'none';
+                    tags.pop(ustensil);
                 })
-                filterDiv.append(ustensilsTag);
-                section.innerHTML = '';
-                searchRecipe(ustensil);
             })
             ustensilsDropdown.append(ust);
         }
