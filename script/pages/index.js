@@ -8,9 +8,9 @@ ustensilsDropdown.classList.add('dropdown');
 const filterInput = document.getElementsByName('filter');
 const filterDiv = document.getElementById('filter-div');
 const input = document.querySelector('input');
-const ingredientsFilter = document.getElementById('form1')
-const applianceFilter = document.getElementById('form2')
-const ustensilsFilter = document.getElementById('form3')
+const ingredientsFilter = document.getElementById('form1');
+const applianceFilter = document.getElementById('form2');
+const ustensilsFilter = document.getElementById('form3');
 // filtre recettes
 
 //console.log(filterInput)
@@ -24,9 +24,9 @@ ingredientsFilter.addEventListener('input', function(){
             }else{
                 filter.style.display = 'none';
             }
-        })
+        });
     }
-})
+});
 applianceFilter.addEventListener('input', function(){
     if(applianceFilter.value !== ''){
         let filters = Array.from(document.getElementsByClassName('dropdown-item'));
@@ -37,9 +37,9 @@ applianceFilter.addEventListener('input', function(){
             }else{
                 filter.style.display = 'none';
             }
-        })
+        });
     }
-})
+});
 ustensilsFilter.addEventListener('input', function(){
     if(ustensilsFilter.value !== ''){
         let filters = Array.from(document.getElementsByClassName('dropdown-item'));
@@ -50,9 +50,9 @@ ustensilsFilter.addEventListener('input', function(){
             }else{
                 filter.style.display = 'none';
             }
-        })
+        });
     }
-})
+});
 
 input.addEventListener('keyup', function(e){
     let inputValue = e.target.value;
@@ -61,9 +61,9 @@ input.addEventListener('keyup', function(e){
         searchRecipe(inputValue);
     }
     if(inputValue.length === 0){
-        searchRecipe(inputValue)
+        searchRecipe(inputValue);
     }
-})
+});
 
 function searchRecipe(recette){
     let filters = [];
@@ -74,11 +74,11 @@ function searchRecipe(recette){
                 displayRecipes(element.recipe, section);
             }
         }
-    })
+    });
     if (filters.length < 1){
         section.innerHTML = '<h1> « Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc. </h1>';
     }
-};
+}
 
 function displayRecipes(data, section){
     const Template = recipesFactory(data);
@@ -90,31 +90,31 @@ function displayRecipes(data, section){
 const section = document.getElementById('recipes_cards');
 async function getData(){
     fetch('./data/recipes.json')
-    .then(function(res){
-        if(res.ok){
-            return res.json();
-        }
-    })
-    .then(function(data){
-        const recipes = data.recipes;
-        recipes.forEach(recipe => {
-            dicos.push({cle: recipe.name, recipe});
-            dicos.push({cle: recipe.description, recipe});
-            dicos.push({cle: recipe.appliance, recipe});
-            recipe.ingredients.forEach(ing => {
-                dicos.push({cle: ing.ingredient, recipe});
-            })
-            recipe.ustensils.forEach(ust => {
-                dicos.push({cle: ust, recipe});
-            })
-            //console.log(dicos)
-            displayRecipes(recipe, section);
+        .then(function(res){
+            if(res.ok){
+                return res.json();
+            }
         })
-        
-    })
-    .catch(function(error){
-        console.log(error);
-    })
+        .then(function(data){
+            const recipes = data.recipes;
+            recipes.forEach(recipe => {
+                dicos.push({cle: recipe.name, recipe});
+                dicos.push({cle: recipe.description, recipe});
+                dicos.push({cle: recipe.appliance, recipe});
+                recipe.ingredients.forEach(ing => {
+                    dicos.push({cle: ing.ingredient, recipe});
+                });
+                recipe.ustensils.forEach(ust => {
+                    dicos.push({cle: ust, recipe});
+                });
+                //console.log(dicos)
+                displayRecipes(recipe, section);
+            });
+            
+        })
+        .catch(function(error){
+            console.log(error);
+        });
 }
 
 async function init(){
