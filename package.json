@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "tefcha": "^0.0.11"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0"
   }
 }

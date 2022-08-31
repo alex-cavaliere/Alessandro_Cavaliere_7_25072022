@@ -19,10 +19,10 @@ mainInput.addEventListener('keyup', function(e){
     }else{
         searchRecipe(inputValue);
     }
-})
-const ingredientsFilter = document.getElementById('form1')
-const applianceFilter = document.getElementById('form2')
-const ustensilsFilter = document.getElementById('form3')
+});
+const ingredientsFilter = document.getElementById('form1');
+const applianceFilter = document.getElementById('form2');
+const ustensilsFilter = document.getElementById('form3');
 // filtre recettes
 
 //console.log(filterInput)
@@ -36,9 +36,9 @@ ingredientsFilter.addEventListener('input', function(){
             }else{
                 filter.style.display = 'none';
             }
-        })
+        });
     }
-})
+});
 applianceFilter.addEventListener('input', function(){
     if(applianceFilter.value !== ''){
         let filters = Array.from(document.getElementsByClassName('dropdown-item'));
@@ -49,9 +49,9 @@ applianceFilter.addEventListener('input', function(){
             }else{
                 filter.style.display = 'none';
             }
-        })
+        });
     }
-})
+});
 ustensilsFilter.addEventListener('input', function(){
     if(ustensilsFilter.value !== ''){
         let filters = Array.from(document.getElementsByClassName('dropdown-item'));
@@ -62,9 +62,9 @@ ustensilsFilter.addEventListener('input', function(){
             }else{
                 filter.style.display = 'none';
             }
-        })
+        });
     }
-})
+});
 
 function searchRecipe(recette){
     let filters = [];
@@ -76,14 +76,14 @@ function searchRecipe(recette){
     }
     for(let i = 0; i < filters.length; i++){
         if(result.length > 0){
-            exist = false;
+            let exist = false;
             for(let y = 0; y < result.length; y++){
                 if(filters[i] == result[y]){
                     exist = true;
                     break;
                 }
             }if(!exist){
-                result.push(filters[i])
+                result.push(filters[i]);
             }
         }else{
             result.push(filters[i]);
@@ -104,34 +104,34 @@ function displayRecipes(data, section){
 
 // api pour recuperer les donnes json
 
-const section = document.getElementById('recipes_cards')
+const section = document.getElementById('recipes_cards');
 async function getData(){
     fetch('./data/recipes.json')
-    .then(function(res){
-        if(res.ok){
-            return res.json();
-        }
-    })
-    .then(function(data){
-        const recipes = data.recipes;
-        recipes.forEach(recipe => {
-            dicos.push({cle: recipe.name, recipe});
-            dicos.push({cle: recipe.description, recipe});
-            dicos.push({cle: recipe.appliance, recipe});
-            recipe.ingredients.forEach(ing => {
-                dicos.push({cle: ing.ingredient, recipe});
-            })
-            recipe.ustensils.forEach(ust => {
-                dicos.push({cle: ust, recipe});
-            })
-            //console.log(dicos)
-            displayRecipes(recipe, section);
+        .then(function(res){
+            if(res.ok){
+                return res.json();
+            }
         })
-        
-    })
-    .catch(function(error){
-        console.log(error);
-    })
+        .then(function(data){
+            const recipes = data.recipes;
+            recipes.forEach(recipe => {
+                dicos.push({cle: recipe.name, recipe});
+                dicos.push({cle: recipe.description, recipe});
+                dicos.push({cle: recipe.appliance, recipe});
+                recipe.ingredients.forEach(ing => {
+                    dicos.push({cle: ing.ingredient, recipe});
+                });
+                recipe.ustensils.forEach(ust => {
+                    dicos.push({cle: ust, recipe});
+                });
+                //console.log(dicos)
+                displayRecipes(recipe, section);
+            });
+            
+        })
+        .catch(function(error){
+            console.log(error);
+        });
 }
 
 async function init(){

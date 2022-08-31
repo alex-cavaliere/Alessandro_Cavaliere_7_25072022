@@ -59,14 +59,14 @@ function recipesFactory(data){
                 p.innerHTML = `<span>${ingredient}: </span>${quantity} ${unit}`;
             }
             table.append(p);             
-        })
+        });
 
         // filter Ingredients
 
         //console.log(totIngredients)
         const filteredIngredients = totIngredients.filter(function(ele , pos){
             return totIngredients.indexOf(ele) === pos;
-        })
+        });
         ingredientsDropdown.innerHTML = '';
         for(let ingredient of filteredIngredients){
             const ing = document.createElement('button');
@@ -76,26 +76,26 @@ function recipesFactory(data){
             ing.addEventListener('click', function(){
                 const ingredientTag = document.createElement('div');
                 const close = document.createElement('i');
-                close.classList.add('fa-solid', 'fa-xmark')
+                close.classList.add('fa-solid', 'fa-xmark');
                 ingredientTag.classList.add('col-1', 'btn');
                 ingredientTag.setAttribute('name', 'filter-btn');
                 ingredientTag.style.backgroundColor = '#3282F7';
                 ingredientTag.textContent = ingredient;
                 ingredientTag.append(close);
                 let index = tags.findIndex(tag => tag == ing.id);
-                tags.push(ingredient)
+                tags.push(ingredient);
                 if(index < 0){
                     filterDiv.append(ingredientTag);
                     section.innerHTML = '';
                     searchRecipe(ingredient);
                 }else{
-                    tags.pop(ingredient)
+                    tags.pop(ingredient);
                 }
                 close.addEventListener('click', function(){
                     ingredientTag.style.display = 'none';
                     tags.pop(ingredient);
-                })
-            })
+                });
+            });
             ingredientsDropdown.append(ing);
         }
         
@@ -112,65 +112,65 @@ function recipesFactory(data){
             app.addEventListener('click', function(){
                 const applianceTag = document.createElement('div');
                 const close = document.createElement('i');
-                close.classList.add('fa-solid', 'fa-xmark')
+                close.classList.add('fa-solid', 'fa-xmark');
                 applianceTag.classList.add('col-1', 'btn');
                 applianceTag.setAttribute('name', 'filter-btn');
                 applianceTag.style.backgroundColor = '#68D9A4';
                 applianceTag.textContent = appliance;
                 applianceTag.append(close);
                 let index = tags.findIndex(tag => tag == app.id);
-                tags.push(appliance)
+                tags.push(appliance);
                 if(index < 0){
                     filterDiv.append(applianceTag);
                     section.innerHTML = '';
                     searchRecipe(appliance);
                 }else{
-                    tags.pop(appliance)
+                    tags.pop(appliance);
                 }
                 close.addEventListener('click', function(){
                     applianceTag.style.display = 'none';
                     tags.pop(appliance);
-                })
-            })
+                });
+            });
             applianceDropdown.append(app);
-        })
+        });
         
         data.ustensils.forEach(obj => {
             ustensil = obj;
             //console.log(dicUstensils)
             totUstensils.push(ustensil);     
-        })
+        });
         let filteredUstensils = [...new Set(totUstensils)];
         //console.log(filteredUstensils);
         ustensilsDropdown.innerHTML = '';
         for(let ustensil of filteredUstensils){
             const ust = document.createElement('button');
             ust.classList.add('dropdown-item', 'ustensils');
-            ust.setAttribute('id', ustensil)
+            ust.setAttribute('id', ustensil);
             ust.textContent = ustensil;
             ust.addEventListener('click', function(){
                 const ustensilsTag = document.createElement('div');
                 const close = document.createElement('i');
-                close.classList.add('fa-solid', 'fa-xmark')
+                close.classList.add('fa-solid', 'fa-xmark');
                 ustensilsTag.classList.add('col-1', 'btn');
                 ustensilsTag.setAttribute('name', 'filter-btn');
                 ustensilsTag.style.backgroundColor = '#ED6454';
                 ustensilsTag.textContent = ustensil;
                 ustensilsTag.append(close);
                 let index = tags.findIndex(tag => tag == ust.id);
-                tags.push(ustensil)
+                tags.push(ustensil);
                 if(index < 0){
                     filterDiv.append(ustensilsTag);
                     section.innerHTML = '';
                     searchRecipe(ustensil);
                 }else{
-                    tags.pop(ustensil)
+                    tags.pop(ustensil);
                 }
                 close.addEventListener('click', function(){
                     ustensilsTag.style.display = 'none';
                     tags.pop(ustensil);
-                })
-            })
+                });
+            });
             ustensilsDropdown.append(ust);
         }
 
