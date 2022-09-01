@@ -139,6 +139,10 @@ h1{
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
 }
+label{
+    position: absolute;
+    visibility: hidden;
+}
 @media screen and (max-width:700px){
     .dropdown-menu{
         width: auto;
