@@ -1,4 +1,5 @@
 let dicos = [];
+const body = document.querySelector('body');
 const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const applianceDropdown = document.getElementById('appliance-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
@@ -11,6 +12,30 @@ const input = document.querySelector('input');
 const ingredientsFilter = document.getElementById('form1');
 const applianceFilter = document.getElementById('form2');
 const ustensilsFilter = document.getElementById('form3');
+const allDropdowns = document.getElementsByName('dropdownMenuButton');
+const chevrons = document.querySelectorAll('button > span > em');
+
+chevrons.forEach(() => {
+    allDropdowns.forEach(dropdown => dropdown.addEventListener('click', function(){
+        this.chevron = this.children[0].children[0];
+        if(this.parentElement.classList.contains('show')){
+            this.chevron.style.transform = 'rotate(0deg)';
+        }else{
+            this.chevron.style.transform = 'rotate(180deg)';
+        }
+        body.addEventListener('click', function(){
+            for(dropdown of allDropdowns){
+                this.chevron = dropdown.children[0].children[0];
+                console.log(this.chevron);
+                if(dropdown.attributes[5].nodeValue && dropdown.parentElement.classList.contains('show')){
+                    this.chevron.style.transform = 'rotate(0deg)';
+                    console.log(dropdown.attributes[5].nodeValue);
+                    break;
+                }
+            }
+        });
+    }));
+});
 // filtre recettes
 
 //console.log(filterInput)

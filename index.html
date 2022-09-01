@@ -20,20 +20,23 @@
             </div>
             <div class="row">
                 <div id="search" class="col input-group">
-                    <input type="search" class="form-control border-0 " placeholder="Rechercher une recette" aria-label="Search" aria-describedby="search-addon" />
+                    <label for="search-input">#</label>
+                    <input id="search-input" type="search" class="form-control border-0 " placeholder="Rechercher une recette" aria-label="Search" aria-describedby="search-addon" />
                     <span class="input-group-text border-0" id="search-addon">
-                      <i class="fas fa-search"></i>
+                      <em class="fas fa-search"></em>
                     </span>
                   </div>
             </div>
             <div id="filter-div" class="row"></div>
             <div id="dropdown_group" class="row mt-4 col-6">
                 <div id="first_dropdown" class="col m-2 dropdown">
-                    <button class="btn dropdown-toggle text-light" type="button" name="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn text-light" type="button" name="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Ingredients
+                      <span class="ml-4"><em class="fa-solid fa-chevron-down"></em></span>
                     </button>
                     <div id="ingredients-menu" class="dropdown-menu" aria-labelledby="first_dropdown">
                       <div class="form-outline">
+                        <label for="form1">#</label>
                         <input type="search" id="form1" name="filter" class="form-control" placeholder="Rechercher" aria-label="Search" />
                       </div>
                       <div id="ingredients-dropdown">
@@ -43,11 +46,13 @@
                     </div>
                 </div>
                 <div id="second_dropdown" class="col m-2 dropdown">
-                    <button class="btn dropdown-toggle text-light" type="button" name="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn text-light" type="button" name="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Appareil
+                      <span class="ml-4"><em class="fa-solid fa-chevron-down"></em></span>
                     </button>
                     <div id="appliance-menu" class="dropdown-menu" aria-labelledby="second_dropdown">
                       <div class="form-outline">
+                        <label for="form2">#</label>
                         <input type="search" id="form2" name="filter" class="form-control" placeholder="Rechercher" aria-label="Search" />
                       </div>
                       <div id="appliance-dropdown">
@@ -57,11 +62,13 @@
                     </div>
                 </div>
                 <div id="third_dropdown" class="col m-2 dropdown">
-                    <button class="btn dropdown-toggle text-light" type="button" name="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn text-light" type="button" name="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       ustensiles
+                      <span class="ml-4"><em class="fa-solid fa-chevron-down"></em></span>
                     </button>
                     <div id="ustensils-menu" class="dropdown-menu" aria-labelledby="third_dropdown">
                       <div class="form-outline">
+                        <label for="form3">#</label>
                         <input type="search" id="form3" name="filter" class="form-control" placeholder="Rechercher" aria-label="Search" />
                       </div>
                       <div id="ustensils-dropdown">
