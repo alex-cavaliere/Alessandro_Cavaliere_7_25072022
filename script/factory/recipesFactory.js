@@ -10,7 +10,7 @@ function recipesFactory(data){
     function getRecipes(){
         //console.log(recipe)
         const wrapper = document.createElement('div');
-        wrapper.classList.add('wrapper', 'col');
+        wrapper.classList.add('wrapper', 'col-lg-4');
         const recipeCard = document.createElement('div');
         recipeCard.classList.add('card', 'mt-4');
         const img = document.createElement('img');
