@@ -21,7 +21,7 @@ function recipesFactory(data){
         const cardText = document.createElement('div');
         cardText.classList.add('card-text', 'row');
         const h2 = document.createElement('h2');
-        h2.classList.add('col-8');
+        h2.classList.add('col-6');
         h2.textContent = data.name;
         const time = document.createElement('p');
         time.setAttribute('id', 'time');
@@ -37,7 +37,7 @@ function recipesFactory(data){
         const recipeContainer = document.createElement('div');
         const table = document.createElement('div');
         const description = document.createElement('p');
-        description.classList.add('col-6', 'card-text');
+        description.classList.add('col', 'card-text');
         description.textContent = data.description;
         table.classList.add('table', 'col');
         //iteration des toutes les ingredients
@@ -73,7 +73,7 @@ function recipesFactory(data){
                 const ingredientTag = document.createElement('div');
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark');
-                ingredientTag.classList.add('col-1', 'btn');
+                ingredientTag.classList.add('col-4', 'col-md-3', 'col-lg-1', 'btn');
                 ingredientTag.setAttribute('name', 'filter-btn');
                 ingredientTag.style.backgroundColor = '#3282F7';
                 ingredientTag.textContent = ingredient;
@@ -109,7 +109,7 @@ function recipesFactory(data){
                 const applianceTag = document.createElement('div');
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark');
-                applianceTag.classList.add('col-1', 'btn');
+                applianceTag.classList.add('col-4', 'col-md-3', 'col-lg-1', 'btn');
                 applianceTag.setAttribute('name', 'filter-btn');
                 applianceTag.style.backgroundColor = '#68D9A4';
                 applianceTag.textContent = appliance;
@@ -150,7 +150,7 @@ function recipesFactory(data){
                 const ustensilsTag = document.createElement('div');
                 const close = document.createElement('i');
                 close.classList.add('fa-solid', 'fa-xmark');
-                ustensilsTag.classList.add('col-1', 'btn');
+                ustensilsTag.classList.add('col-4', 'col-md-3', 'col-lg-1', 'btn');
                 ustensilsTag.setAttribute('name', 'filter-btn');
                 ustensilsTag.style.backgroundColor = '#ED6454';
                 ustensilsTag.textContent = ustensil;

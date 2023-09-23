@@ -132,7 +132,7 @@ async function getData(){
                 recipe.ustensils.forEach(ust => {
                     dicos.push({cle: ust, recipe});
                 });
-                //console.log(dicos)
+                console.log(dicos);
                 displayRecipes(recipe, section);
             });
             

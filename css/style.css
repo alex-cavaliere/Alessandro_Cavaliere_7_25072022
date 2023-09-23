@@ -107,7 +107,6 @@ h1{
     margin-right: 0.50em;
 }
 .card-body{
-    min-width: 350px;
     background-color: #E7E7E7;
 }
 .card-text:nth-child(2){
